@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Form Input dan DOM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .form-group {
+            margin: 15px 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 12px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .error {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+        .hasil {
+            background-color: #e8f5e9;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 4px;
+            display: none;
+        }
+        .hasil.show {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table td {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+        }
+        table td:first-child {
+            font-weight: bold;
+            width: 150px;
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Input dan Validasi dengan DOM</h1>
+        
+        <div class="form-group">
+            <label for="nama">Nama Lengkap:</label>
+            <input type="text" id="nama" placeholder="Masukkan nama lengkap">
+            <span class="error" id="err_nama">Nama tidak boleh kosong!</span>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" placeholder="Masukkan email">
+            <span class="error" id="err_email">Email tidak valid!</span>
+        </div>
+
+        <div class="form-group">
+            <label for="umur">Umur:</label>
+            <input type="number" id="umur" placeholder="Masukkan umur" min="0" max="100">
+            <span class="error" id="err_umur">Umur harus antara 0-100!</span>
+        </div>
+
+        <div class="form-group">
+            <label for="prodi">Program Studi:</label>
+            <select id="prodi">
+                <option value="">-- Pilih Program Studi --</option>
+                <option value="Teknik Informatika">Teknik Informatika</option>
+                <option value="Sistem Informasi">Sistem Informasi</option>
+                <option value="Manajemen Informatika">Manajemen Informatika</option>
+            </select>
+            <span class="error" id="err_prodi">Program Studi harus dipilih!</span>
+        </div>
+
+        <button onclick="validasiForm()">Kirim</button>
+        <button onclick="resetForm()" style="background-color: #f44336; margin-left: 10px;">Reset</button>
+
+        <div class="hasil" id="hasil">
+            <h3>Data yang Dikirim:</h3>
+            <table>
+                <tr>
+                    <td>Nama</td>
+                    <td id="tampil_nama">-</td>
+                </tr>
+                <tr>
+                    <td>Email</td>
+                    <td id="tampil_email">-</td>
+                </tr>
+                <tr>
+                    <td>Umur</td>
+                    <td id="tampil_umur">-</td>
+                </tr>
+                <tr>
+                    <td>Program Studi</td>
+                    <td id="tampil_prodi">-</td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function validasiForm() {
+            // Reset error messages
+            document.getElementById("err_nama").style.display = "none";
+            document.getElementById("err_email").style.display = "none";
+            document.getElementById("err_umur").style.display = "none";
+            document.getElementById("err_prodi").style.display = "none";
+
+            let nama = document.getElementById("nama").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let umur = document.getElementById("umur").value;
+            let prodi = document.getElementById("prodi").value;
+            
+            let valid = true;
+
+            // Validasi Nama
+            if (nama === "") {
+                document.getElementById("err_nama").style.display = "block";
+                valid = false;
+            }
+
+            // Validasi Email
+            let emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                document.getElementById("err_email").style.display = "block";
+                valid = false;
+            }
+
+            // Validasi Umur
+            if (umur === "" || umur < 0 || umur > 100) {
+                document.getElementById("err_umur").style.display = "block";
+                valid = false;
+            }
+
+            // Validasi Program Studi
+            if (prodi === "") {
+                document.getElementById("err_prodi").style.display = "block";
+                valid = false;
+            }
+
+            // Jika valid, tampilkan hasil
+            if (valid) {
+                document.getElementById("tampil_nama").innerHTML = nama;
+                document.getElementById("tampil_email").innerHTML = email;
+                document.getElementById("tampil_umur").innerHTML = umur;
+                document.getElementById("tampil_prodi").innerHTML = prodi;
+                document.getElementById("hasil").classList.add("show");
+            }
+        }
+
+        function resetForm() {
+            document.getElementById("nama").value = "";
+            document.getElementById("email").value = "";
+            document.getElementById("umur").value = "";
+            document.getElementById("prodi").value = "";
+            document.getElementById("hasil").classList.remove("show");
+            document.getElementById("err_nama").style.display = "none";
+            document.getElementById("err_email").style.display = "none";
+            document.getElementById("err_umur").style.display = "none";
+            document.getElementById("err_prodi").style.display = "none";
+        }
+    </script>

@@ -272,63 +272,6 @@ function hitungTotal() {
 
 ---
 
-## 🎯 Tujuan Pembelajaran
-
-Setelah menyelesaikan semua praktikum, mahasiswa diharapkan dapat:
-
-1. ✅ Memahami sintaks dasar JavaScript
-2. ✅ Memahami penggunaan JavaScript dalam web development
-3. ✅ Membuat kode JavaScript sederhana
-4. ✅ Memanipulasi elemen HTML dengan JavaScript
-5. ✅ Membuat validasi form dengan JavaScript
-6. ✅ Menggunakan event handling (onclick, onchange)
-7. ✅ Menggunakan DOM API (document.getElementById, innerHTML, etc)
-8. ✅ Menerapkan konsep dasar pemrograman (fungsi, kondisi, loop)
-
----
-
-## 📝 Cara Menggunakan Repository
-
-### 1. Clone Repository
-```bash
-git clone https://github.com/username/Lab5Web.git
-cd Lab5Web
-```
-
-### 2. Buka File di Browser
-Setiap file `.html` dapat dibuka langsung di browser untuk melihat hasilnya.
-
-### 3. Validasi HTML
-Validasi setiap file HTML di: http://validator.w3.org
-
-### 4. Membaca Console
-Tekan F12 untuk membuka Developer Tools dan lihat console output.
-
----
-
-## 🔍 Konsep-Konsep Penting
-
-### JavaScript Placement
-- **Di tag `<head>`**: Script dijalankan sebelum halaman selesai dimuat
-- **Di tag `<body>`**: Script dijalankan saat halaman dimuat
-- **File eksternal**: Script dipisahkan dalam file `.js`
-
-### Output Methods
-| Method | Fungsi | Contoh |
-|--------|--------|--------|
-| `document.write()` | Menulis ke halaman HTML | `document.write("Hello")` |
-| `innerHTML` | Mengubah konten elemen | `element.innerHTML = "Teks"` |
-| `alert()` | Pop-up dialog | `alert("Pesan")` |
-| `console.log()` | Output ke console | `console.log("Debug")` |
-
-### Operator Kondisi
-- **if..else**: Untuk kondisi sederhana
-- **switch**: Untuk banyak kondisi dengan nilai yang sama
-
-### Event Handlers
-- `onclick`: Ketika elemen diklik
-- `onchange`: Ketika nilai input berubah
-- `onload`: Ketika halaman selesai dimuat
 
 
 
@@ -336,4 +279,4 @@ Tekan F12 untuk membuka Developer Tools dan lihat console output.
 
 
 
-*Last Updated: 2025*
+
